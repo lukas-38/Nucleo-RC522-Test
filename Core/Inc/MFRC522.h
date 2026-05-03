@@ -24,7 +24,7 @@
 /* PORT number that /CS pin assigned on */
 #define CS_PORT_NAME		GPIOA
 /* PIN number that  /CS pin assigned on */
-#define CS_PIN_NUM		3
+#define CS_PIN_NUM		4
 
 #define cs_set CS_PORT_NAME->ODR |= 1<<CS_PIN_NUM;
 #define cs_clr CS_PORT_NAME->ODR &= ~(1<<CS_PIN_NUM);
@@ -150,7 +150,7 @@ const uint8_t frame_size = 16;
 ///  ver 1.0 					  ///////////////////////////
 /////////////////////////////////////////////////////////////
 
-extern SPI_HandleTypeDef hspi2;
+extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart2;
 // function definitions
 void Write_MFRC522(uchar, uchar);
@@ -177,7 +177,7 @@ void MFRC522_Halt(void);
 uint8_t spi_transfer (uint8_t byte_s)
 {
 	uint8_t rx;
-	HAL_SPI_TransmitReceive(&hspi2, &byte_s, &rx, 1, 0xffffffff);
+	HAL_SPI_TransmitReceive(&hspi1, &byte_s, &rx, 1, 0xffffffff);
 	return rx;
 }
 
